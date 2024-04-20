@@ -1,17 +1,14 @@
-pub mod binary;
 pub mod cache;
-pub mod date;
+pub mod chunk;
 pub mod fetchers;
-pub mod json;
 pub mod mergers;
 pub mod params;
 // pub mod parsers;
 pub mod reponses;
 pub mod source;
 
-pub use binary::*;
 pub use cache::*;
-pub use date::*;
+pub use chunk::*;
 pub use fetchers::*;
 pub use mergers::*;
 pub use params::*;

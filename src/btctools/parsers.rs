@@ -1,6 +1,6 @@
 use serde_json::{json, Map, Value};
 
-use crate::timestamp_to_naive_date;
+use parser::timestamp_to_naive_date;
 
 pub fn parse_dataset_from_json(json: &Value) -> color_eyre::Result<Value> {
     Ok(json!(json

@@ -1,7 +1,7 @@
 use serde::Serialize;
 use serde_json::{json, Value};
 
-use crate::timestamp_to_naive_date;
+use parser::timestamp_to_naive_date;
 
 #[derive(Debug, Serialize)]
 pub struct CandlestickData {

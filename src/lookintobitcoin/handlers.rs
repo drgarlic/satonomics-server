@@ -1,6 +1,6 @@
 use axum::{extract::State, response::Response};
 
-use crate::{cached_fetch, json_to_reponse, AppState, Params, Source};
+use crate::{cached_fetch, generic_to_reponse, AppState, Params, Source};
 
 use super::*;
 
@@ -13,16 +13,17 @@ pub async fn funding_rates_handler(state: State<AppState>) -> Response {
 }
 
 async fn base_handler(State(state): State<AppState>, params: Params) -> Response {
-    json_to_reponse(
+    generic_to_reponse(
         cached_fetch(state.cache, params.to_key(), || {
             fetch_and_parse(&state.client, &params)
         })
         .await,
-        Source {
+        Some(Source {
             name: "look into bitcoin".to_owned(),
             url: "https://www.lookintobitcoin.com/".to_owned(),
             color: "#10A62B".to_owned(),
-        },
+        }),
+        None,
         None,
     )
 }

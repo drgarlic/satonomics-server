@@ -4,7 +4,7 @@ use axum::{
 };
 use serde::Deserialize;
 
-use crate::{cached_fetch, json_to_reponse, AppState, Params, Source};
+use crate::{cached_fetch, generic_to_reponse, AppState, Params, Source};
 
 use super::*;
 
@@ -22,16 +22,17 @@ pub async fn ohlcv_handler(State(state): State<AppState>, query: Query<KrakenQue
         None,
     );
 
-    json_to_reponse(
+    generic_to_reponse(
         cached_fetch(state.cache, params.to_key(), || {
             fetch_and_parse(&state.client, &params)
         })
         .await,
-        Source {
+        Some(Source {
             name: "Kraken".to_owned(),
             url: "https://www.kraken.com".to_owned(),
             color: "#6366f1".to_owned(),
-        },
+        }),
+        None,
         None,
     )
 }

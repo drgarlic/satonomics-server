@@ -47,7 +47,7 @@ async fn main() -> color_eyre::Result<()> {
         .with_state(app_state.clone());
 
     // run our app with hyper, listening globally on port 3110
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3110").await?;
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3111").await?;
 
     serve(listener, router).await?;
 

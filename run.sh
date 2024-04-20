@@ -1,1 +1,1 @@
-cargo watch -x "run -r"
+cargo watch -x "run -r" --skip-local-deps
